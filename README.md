@@ -1,4 +1,4 @@
-# ForestHandler
+# ForestHandl
 Manipulates a forest repository through differents commands accessible to the user
 
 PROBLEM SPECIFICATION
