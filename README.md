@@ -25,7 +25,6 @@ ensures:
 warning should be generated
 
 Additional information
-- the program is not finished yet, some commands are still in the proccess of being developed
 - all the data is created in the main module
 - THE MAIN MODULE should be run in order to start the application
 
