@@ -16,9 +16,9 @@ class Type:
 
     def __init__(self ,origin):
         if self.available_origin(origin):
-            self.__origin =origin
+            self.__origin = origin
         else:
-            self.__origin =""
+            raise ValueError("Not an available origin for type!")
 
     def available_origin(self ,origin):
         for origin1 in self.origins:
@@ -33,12 +33,15 @@ class Type:
         if self.available_origin(origin):
             self.__origin = origin
         else:
-            print("Not an available type!")
+            raise ValueError("Not an available origin for type!")
 
     def read_type(self):
         name =input("Name: ")
         country =input("Country: ")
-        self.origin_setter((name ,country))
+        try:
+            self.origin_setter((name ,country))
+        except ValueError as valueError:
+            raise ValueError(valueError)
 
     def __str__(self):
         if self.available_origin(self.origin_getter()):

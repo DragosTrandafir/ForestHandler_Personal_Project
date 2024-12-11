@@ -1,5 +1,5 @@
-from domain.type import Type
-from infrastructure.tree_repo import TreeRepo
+from ForestHandler.domain.type import Type
+from ForestHandler.infrastructure.tree_repo import TreeRepo
 import matplotlib.pyplot as plt
 
 
@@ -29,8 +29,12 @@ class TypeRepo:
         return s
 
     def read_type_repo(self):
-        type=Type(("",""))
-        type.read_type()
+        try:
+            type=Type(("Baobab", "Madagascar"))
+            type.read_type()
+        except ValueError as valueError:
+            raise ValueError(valueError)
+
         return type
 
     def contains(self,type):

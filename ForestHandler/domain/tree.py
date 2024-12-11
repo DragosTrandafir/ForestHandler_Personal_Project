@@ -1,16 +1,18 @@
-from domain.type import Type
+from pyexpat import error
+
+from ForestHandler.domain.type import Type
 
 
 class Tree:
 
     def __init__(self, id, year_planted, coords, type):
         if id<0:
-            self.__id = -1
+            raise ValueError("Id must be greater than or equal to 0!")
         else:
             self.__id = id
 
         if year_planted<0:
-            self.__year_planted = -1
+            raise ValueError("Year planted must be greater than or equal to 0!")
         else:
             self.__year_planted = year_planted
 
@@ -35,13 +37,13 @@ class Tree:
 
     def id_setter(self,id=-1):
         if id<0:
-            print("Not an available id!")
+            raise ValueError("id must be greater than or equal to 0!")
         else:
             self.__id=id
 
     def year_setter(self,year=0):
         if year < 0:
-            print("Not an available year!")
+            raise ValueError("year_planted must be greater than or equal to 0!")
         else:
             self.__year_planted = year
 
@@ -56,11 +58,15 @@ class Tree:
         year = int(input("Year: "))
         xcoord = int(input("X Coord: "))
         ycoord = int(input("Y Coord: "))
-        self.__type.read_type()
 
-        self.id_setter(id)
-        self.year_setter(year)
-        self.coords_setter([xcoord,ycoord])
+        try:
+            self.__type.read_type()
+
+            self.id_setter(id)
+            self.year_setter(year)
+            self.coords_setter([xcoord,ycoord])
+        except ValueError as valueError:
+            raise ValueError(valueError)
 
     def __str__(self):
         if self.type_getter().available_origin(self.type_getter().origin_getter()):

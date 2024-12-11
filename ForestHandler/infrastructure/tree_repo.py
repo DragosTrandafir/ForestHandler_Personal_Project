@@ -1,5 +1,5 @@
-from domain.tree import Tree
-from domain.type import Type
+from ForestHandler.domain.tree import Tree
+from ForestHandler.domain.type import Type
 import matplotlib.pyplot as plt
 
 
@@ -22,8 +22,11 @@ class TreeRepo:
         self.__trees = vl
 
     def read_tree_repo(self):
-        tree=Tree(-1,-1,[1,1],Type(("","")))
-        tree.read_tree()
+        tree=Tree(1,1906,[1,1],Type(("Baobab", "Madagascar")))
+        try:
+            tree.read_tree()
+        except ValueError as valueError:
+            raise ValueError(valueError)
         return tree
 
     def __str__(self):

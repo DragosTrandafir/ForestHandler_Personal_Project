@@ -1,7 +1,7 @@
-from infrastructure.tree_repo import TreeRepo
-from infrastructure.type_repo import TypeRepo
-from domain.tree import Tree
-from domain.type import Type
+from ForestHandler.infrastructure.tree_repo import TreeRepo
+from ForestHandler.infrastructure.type_repo import TypeRepo
+from ForestHandler.domain.tree import Tree
+from ForestHandler.domain.type import Type
 import matplotlib.pyplot as plt
 
 
@@ -28,12 +28,18 @@ class TreeCtrl:
     # read a tree
     def read_tree_ctrl(self):
         treeRepo=TreeRepo()
-        tree=treeRepo.read_tree_repo()
+        try:
+            tree=treeRepo.read_tree_repo()
+        except ValueError as valueError:
+            raise ValueError(valueError)
         return tree
 
     def read_type_ctrl(self):
         typeRepo=TypeRepo()
-        type=typeRepo.read_type_repo()
+        try:
+            type=typeRepo.read_type_repo()
+        except ValueError as valueError:
+            raise ValueError(valueError)
         return type
 
     # 1. Add a tree to the forest

@@ -1,4 +1,4 @@
-from app.tree_controller import TreeCtrl
+from ForestHandler.app.tree_controller import TreeCtrl
 
 
 class UI:
@@ -65,9 +65,12 @@ class UI:
             print(self.printMenu())
             option = self.readOption()
             if option == 1:
-                tree = self.read_tree_ui()
-                self.__data.add_tree_type(tree)
-                print(str(self.__data))
+                try:
+                    tree = self.read_tree_ui()
+                    self.__data.add_tree_type(tree)
+                    print(str(self.__data))
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 2:
                 print(str(self.__data))
             elif option == 3:
