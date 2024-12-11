@@ -44,8 +44,7 @@ class Type:
             raise ValueError(valueError)
 
     def __str__(self):
-        if self.available_origin(self.origin_getter()):
-            return "Type:  " +self.__origin[0] +" from  " +self.__origin[1]
+        return "Type:  " +self.__origin[0] +" from  " +self.__origin[1]
 
     def __eq__(self, other):
         return(

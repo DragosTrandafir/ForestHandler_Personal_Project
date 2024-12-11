@@ -45,8 +45,7 @@ class TypeRepo:
 
     # 1
     def add_type(self,type):
-        if type.available_origin(type.origin_getter()):
-            self.__types.append(type)
+        self.__types.append(type)
 
     # 4
     def delete_types(self,type):

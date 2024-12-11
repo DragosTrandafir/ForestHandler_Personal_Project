@@ -37,13 +37,13 @@ class Tree:
 
     def id_setter(self,id=-1):
         if id<0:
-            raise ValueError("id must be greater than or equal to 0!")
+            raise ValueError("Id must be greater than or equal to 0!")
         else:
             self.__id=id
 
     def year_setter(self,year=0):
         if year < 0:
-            raise ValueError("year_planted must be greater than or equal to 0!")
+            raise ValueError("Year planted must be greater than or equal to 0!")
         else:
             self.__year_planted = year
 
@@ -69,15 +69,12 @@ class Tree:
             raise ValueError(valueError)
 
     def __str__(self):
-        if self.type_getter().available_origin(self.type_getter().origin_getter()):
-            return ("Tree with id "+str(self.__id)+", planted in "+str(self.__year_planted)
-                + ", with coords:"+str(self.__coords)+", of type "+str(self.__type))
-        else:
-            return ""
+        return ("Tree with id "+str(self.__id)+", planted in "+str(self.__year_planted)
+            + ", with coords:"+str(self.__coords)+", of type "+str(self.__type))
 
     def __eq__(self,other):
         return (
-                self.__type!=other.__type and self.__coords==other.__coords
+                self.__type==other.__type and self.__coords==other.__coords
                 and self.__year_planted==other.__year_planted
         )
 

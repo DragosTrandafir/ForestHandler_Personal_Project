@@ -36,23 +36,31 @@ class TreeRepo:
                 s += str(self.__trees[i]) + "\n"
         return s
 
+    def is_id_unique(self,id):
+        for i in range(0, len(self.__trees)):
+           if self.__trees[i].id_getter() == id:
+               return False
+        return True
+
+
     # 1
     def add_tree(self,tree):
-        if tree.id_getter()>=0 and tree.year_planted_getter()>=0:
+        if self.is_id_unique(tree.id_getter()):
             self.__trees.append(tree)
+        else:
+            raise ValueError("Id must be unique.")
 
     # 3
     def insert_tree(self,tree,index):
         if index<0 or index>=len(self.__trees):
-            print("Not an available index!")
+            raise ValueError("Index out of range")
         else:
-            if tree.id_getter() >= 0 and tree.year_planted_getter() >= 0:
-                self.__trees.insert(index,tree)
+            self.__trees.insert(index,tree)
 
     # 4
     def delete_tree(self,index):
         if index<0 or index>=len(self.__trees):
-            print("Not an available index!")
+            raise ValueError("Index out of range")
         else:
             del self.__trees[index]
 
@@ -60,7 +68,8 @@ class TreeRepo:
         if 0 <= index < len(self.__trees):
             type=self.__trees[index].type_getter()
             return type
-        return Type(("",""))
+        else:
+            raise ValueError("Index out of range")
 
     def two_trees_same_type(self,type):
         c=0
@@ -132,12 +141,12 @@ class TreeRepo:
                     s += str(list1[i]) + "\n"
             return s
         else:
-            print("Unavailable input!")
+            raise ValueError("Parity must be either 'odd' or 'even'")
 
     # 11
     def oldest_tree(self):
         if len(self.__trees)<1:
-            return "No oldest tree"
+            raise ValueError("No trees found")
         else:
             oldest=self.__trees[0].year_planted_getter()
             index=0
@@ -172,10 +181,9 @@ class TreeRepo:
     # 14
     def update_tree_by_index_repo(self, index):
         if index<0 or index>=len(self.__trees):
-            print("Not an available index/id!")
+            raise ValueError("Not an available index!")
         else:
-            tree = Tree(-1, -1, [1], Type(("", "")))
-            tree.read_tree()
+            tree=self.read_tree_repo()
             self.__trees[index]=tree
 
     # 15
@@ -183,7 +191,7 @@ class TreeRepo:
         for i in range(0,len(self.__trees)):
             if self.__trees[i].id_getter() == id:
                 return i
-        return -1
+        raise ValueError("Not an available id (there is no tree to have this id)!")
 
     def update_tree_by_id_repo(self,id):
         index = self.get_index_by_id(id)
@@ -261,7 +269,7 @@ class TreeRepo:
     # 20. Get a bar chart with number of trees planted in intervals of 20 years
     def oldest_year(self):
         if len(self.__trees)<1:
-            print("Not an available operation!")
+            raise ValueError("No trees to show!")
         else:
             oldest=self.__trees[0].year_planted_getter()
             index=0
@@ -272,7 +280,10 @@ class TreeRepo:
             return self.__trees[index].year_planted_getter()
 
     def intervals_bar_chart(self):
-        oldest_year=self.oldest_year()
+        try:
+            oldest_year=self.oldest_year()
+        except ValueError as valueError:
+            raise ValueError(valueError)
         bar_counter=[]
         bar_years=[]
         for i in range(oldest_year,2025,20): # present year + 20

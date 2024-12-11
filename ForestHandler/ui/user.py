@@ -68,59 +68,81 @@ class UI:
                 try:
                     tree = self.read_tree_ui()
                     self.__data.add_tree_type(tree)
-                    print(str(self.__data))
                 except ValueError as value_error:
                     print(value_error)
             elif option == 2:
                 print(str(self.__data))
             elif option == 3:
-                tree = self.read_tree_ui()
-                index = self.readIndex()
-                self.__data.insert_tree_type(tree,index)
-                print(str(self.__data))
+                try:
+                    tree = self.read_tree_ui()
+                    index = self.readIndex()
+                    self.__data.insert_tree_type(tree,index)
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 4:
-                index = self.readIndex()
-                self.__data.delete_tree_type(index)
-                print(str(self.__data))
+                try:
+                    index = self.readIndex()
+                    self.__data.delete_tree_type(index)
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 5:
-                type = self.read_type_ui()
-                self.__data.delete_treeByType(type)
-                print(str(self.__data))
+                try:
+                    type = self.read_type_ui()
+                    self.__data.delete_treeByType(type)
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 6:
-                year1 = self.readYear()
-                year2 = self.readYear()
-                self.__data.delete_tree_type_between_years(year1,year2)
-                print(str(self.__data))
+                try:
+                    year1 = self.readYear()
+                    year2 = self.readYear()
+                    self.__data.delete_tree_type_between_years(year1,year2)
+                except ValueError as value_error:
+                    print(value_error)
             elif option==7:
-                xcoord1= self.readCoordX()
-                xcoord2 = self.readCoordX()
-                ycoord1 = self.readCoordY()
-                ycoord2 = self.readCoordY()
-                print(self.__data.coords_range_ctrl(xcoord1, xcoord2, ycoord1, ycoord2))
+                try:
+                    xcoord1= self.readCoordX()
+                    xcoord2 = self.readCoordX()
+                    ycoord1 = self.readCoordY()
+                    ycoord2 = self.readCoordY()
+                    print(self.__data.coords_range_ctrl(xcoord1, xcoord2, ycoord1, ycoord2))
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 8:
-                year1 = self.readYear()
-                year2 = self.readYear()
-                print(self.__data.years_range_ctrl(year1, year2))
+                try:
+                    year1 = self.readYear()
+                    year2 = self.readYear()
+                    print(self.__data.years_range_ctrl(year1, year2))
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 9:
                 print(self.__data.sort_by_year_ctrl())
             elif option == 10:
-                parity=input("Choose between odd or even: ")
-                print(self.__data.filter_id_ctrl(parity))
+                try:
+                    parity=input("Choose between odd or even: ")
+                    print(self.__data.filter_id_ctrl(parity))
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 11:
-                print(self.__data.oldest_tree_repo())
+                try:
+                    print(self.__data.oldest_tree_repo())
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 12:
                 print(self.__data.trees_at_least_2_types_ctrl())
             elif option == 13:
                 self.__data.delete_overlapping_ctrl()
-                print(str(self.__data))
             elif option == 14:
-                index = self.readIndex()
-                self.__data.update_tree_by_index_ctrl(index)
-                print(str(self.__data))
+                try:
+                    index = self.readIndex()
+                    self.__data.update_tree_by_index_ctrl(index)
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 15:
-                id = self.readId()
-                self.__data.update_tree_by_id_ctrl(id)
-                print(str(self.__data))
+                try:
+                    id = self.readId()
+                    self.__data.update_tree_by_id_ctrl(id)
+                except ValueError as value_error:
+                    print(value_error)
             elif option == 16:
                 self.__data.repository_representation_general_ctrl()
             elif option == 17:
