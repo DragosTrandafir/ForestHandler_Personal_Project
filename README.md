@@ -26,7 +26,7 @@ warning should be generated
 
 Additional information
 - all the data is created in the main module
-- THE MAIN MODULE should be run in order to start the application
+- main.py should be run in order to start the application
 
 
 
