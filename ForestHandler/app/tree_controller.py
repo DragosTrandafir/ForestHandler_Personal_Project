@@ -26,18 +26,18 @@ class TreeCtrl:
         return str(self.__treeRepo)+"\n"+str(self.__typeRepo)
 
     # read a tree
-    def read_tree_ctrl(self):
+    def read_tree(self):
         treeRepo=TreeRepo()
         try:
-            tree=treeRepo.read_tree_repo()
+            tree=treeRepo.read_tree()
         except ValueError as valueError:
             raise ValueError(valueError)
         return tree
 
-    def read_type_ctrl(self):
+    def read_type(self):
         typeRepo=TypeRepo()
         try:
-            type=typeRepo.read_type_repo()
+            type=typeRepo.read_type()
         except ValueError as valueError:
             raise ValueError(valueError)
         return type
@@ -86,26 +86,26 @@ class TreeCtrl:
         self.__treeRepo.delete_tree_years(year1,year2)
 
     # 7. Get all trees having the coordinates in a certain range
-    def coords_range_ctrl(self,xcoord1,xcoord2,ycoord1,ycoord2):
+    def coords_range(self, xcoord1, xcoord2, ycoord1, ycoord2):
         return self.__treeRepo.coords_range(xcoord1,xcoord2,ycoord1,ycoord2)
 
     # 8. Get all trees planted between 2 given years
-    def years_range_ctrl(self,year1,year2):
+    def years_range(self, year1, year2):
         return self.__treeRepo.years_range(year1,year2)
 
     # 9
-    def sort_by_year_ctrl(self):
+    def sort_by_year(self):
         return self.__treeRepo.sort_by_year()
 
     # 10
-    def filter_id_ctrl(self, parity):
+    def filter_id(self, parity):
         try:
             return self.__treeRepo.filter_id(parity)
         except ValueError as valueError:
             raise ValueError(valueError)
 
     # 11 . Determine the oldest tree
-    def oldest_tree_repo(self):
+    def oldest_tree(self):
         try:
             r=self.__treeRepo.oldest_tree()
             return r
@@ -113,51 +113,51 @@ class TreeCtrl:
             raise ValueError(valueError)
 
     # 12 . Determine all the trees which are the same, excepting their type
-    def trees_at_least_2_types_ctrl(self):
+    def trees_at_least_2_types(self):
         s=self.__treeRepo.trees_at_least_2_types()
         return s
 
     # 13 . Delete all trees that overlap (only the first of each is kept)
-    def delete_overlapping_ctrl(self):
+    def delete_overlapping(self):
         self.__treeRepo.delete_overlapping()
 
     # 14 . Update tree at index
-    def update_tree_by_index_ctrl(self, index):
+    def update_tree_by_index(self, index):
         try:
             if not self.__treeRepo.two_trees_same_type(self.__treeRepo.type_of_tree_by_index(index)):
                 self.__typeRepo.delete_types(self.__treeRepo.type_of_tree_by_index(index))
-            self.__treeRepo.update_tree_by_index_repo(index)
+            self.__treeRepo.update_tree_by_index(index)
             if not self.__typeRepo.contains(self.__treeRepo.type_of_tree_by_index(index)):
                 self.__typeRepo.add_type(self.__treeRepo.type_of_tree_by_index(index))
         except ValueError as valueError:
             raise ValueError(valueError)
 
     # 15 . Update tree by id
-    def update_tree_by_id_ctrl(self, id):
+    def update_tree_by_id(self, id):
         try:
             index_where_to_update = self.__treeRepo.get_index_by_id(id)
             if not self.__treeRepo.two_trees_same_type(self.__treeRepo.type_of_tree_by_index(index_where_to_update)):
                 self.__typeRepo.delete_types(self.__treeRepo.type_of_tree_by_index(index_where_to_update))
-            self.__treeRepo.update_tree_by_id_repo(id)
+            self.__treeRepo.update_tree_by_id(id)
             if not self.__typeRepo.contains(self.__treeRepo.type_of_tree_by_index(index_where_to_update)):
                 self.__typeRepo.add_type(self.__treeRepo.type_of_tree_by_index(index_where_to_update))
         except ValueError as valueError:
             raise ValueError(valueError)
 
     # 16. Get a visual representation of the repository
-    def repository_representation_general_ctrl(self):
+    def repository_representation_general(self):
         self.__treeRepo.repository_representation_general()
 
     # 17. Get all trees having the coordinates in a certain range (graphic)
-    def coords_range_representation_ctrl(self, xcoord1, xcoord2, ycoord1, ycoord2):
+    def coords_range_representation(self, xcoord1, xcoord2, ycoord1, ycoord2):
         self.__treeRepo.repository_representation_coords_range(xcoord1, xcoord2, ycoord1, ycoord2)
 
     # 18. Get all trees planted between 2 given years (graphic)
-    def repository_representation_years_range_ctrl(self, year1, year2):
+    def repository_representation_years_range(self, year1, year2):
         self.__treeRepo.repository_representation_years_range(year1, year2)
 
     # 19. Get a pie chart with all the types
-    def types_bar_ctrl(self):
+    def types_bar(self):
         fig, ax = plt.subplots(figsize=(9, 5))
         parts = []
         for type in self.__typeRepo.get_types():
@@ -170,5 +170,5 @@ class TreeCtrl:
         plt.show()
 
     # 20. Get a bar chart with number of trees planted in intervals of 20 years
-    def intervals_bar_chart_ctrl(self):
+    def intervals_bar_chart(self):
         self.__treeRepo.intervals_bar_chart()

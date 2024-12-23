@@ -28,7 +28,7 @@ class TypeRepo:
                 s += str(self.__types[i]) + "\n"
         return s
 
-    def read_type_repo(self):
+    def read_type(self):
         try:
             type=Type(("Baobab", "Madagascar"))
             type.read_type()

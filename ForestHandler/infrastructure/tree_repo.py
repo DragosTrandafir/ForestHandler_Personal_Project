@@ -21,7 +21,7 @@ class TreeRepo:
     def set_trees(self, vl):
         self.__trees = vl
 
-    def read_tree_repo(self):
+    def read_tree(self):
         tree=Tree(1,1906,[1,1],Type(("Baobab", "Madagascar")))
         try:
             tree.read_tree()
@@ -179,11 +179,11 @@ class TreeRepo:
 
 
     # 14
-    def update_tree_by_index_repo(self, index):
+    def update_tree_by_index(self, index):
         if index<0 or index>=len(self.__trees):
             raise ValueError("Not an available index!")
         else:
-            tree=self.read_tree_repo()
+            tree=self.read_tree()
             self.__trees[index]=tree
 
     # 15
@@ -193,9 +193,9 @@ class TreeRepo:
                 return i
         raise ValueError("Not an available id (there is no tree to have this id)!")
 
-    def update_tree_by_id_repo(self,id):
+    def update_tree_by_id(self, id):
         index = self.get_index_by_id(id)
-        self.update_tree_by_index_repo(index)
+        self.update_tree_by_index(index)
 
     # 16. Get a visual representation of the repository
     def repository_representation(self,trees):

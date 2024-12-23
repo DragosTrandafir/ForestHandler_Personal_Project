@@ -81,11 +81,11 @@ class UI:
         return coord
 
     def read_tree_ui(self):
-        tree = self.__data.read_tree_ctrl()
+        tree = self.__data.read_tree()
         return tree
 
     def read_type_ui(self):
-        type = self.__data.read_type_ctrl()
+        type = self.__data.read_type()
         return type
 
     def start(self):
@@ -133,61 +133,61 @@ class UI:
                     xcoord2 = self.readCoordX()
                     ycoord1 = self.readCoordY()
                     ycoord2 = self.readCoordY()
-                    print(self.__data.coords_range_ctrl(xcoord1, xcoord2, ycoord1, ycoord2))
+                    print(self.__data.coords_range(xcoord1, xcoord2, ycoord1, ycoord2))
                 except ValueError as value_error:
                     print(value_error)
             elif option == get_all_trees_between_2_years_option:
                 try:
                     year1 = self.readYear()
                     year2 = self.readYear()
-                    print(self.__data.years_range_ctrl(year1, year2))
+                    print(self.__data.years_range(year1, year2))
                 except ValueError as value_error:
                     print(value_error)
             elif option == sort_all_trees_by_year_option:
-                print(self.__data.sort_by_year_ctrl())
+                print(self.__data.sort_by_year())
             elif option == filter_trees_by_id_option:
                 try:
                     parity=input("Choose between odd or even: ")
-                    print(self.__data.filter_id_ctrl(parity))
+                    print(self.__data.filter_id(parity))
                 except ValueError as value_error:
                     print(value_error)
             elif option == oldest_tree_option:
                 try:
-                    print(self.__data.oldest_tree_repo())
+                    print(self.__data.oldest_tree())
                 except ValueError as value_error:
                     print(value_error)
             elif option == similar_trees_excepting_type_option:
-                print(self.__data.trees_at_least_2_types_ctrl())
+                print(self.__data.trees_at_least_2_types())
             elif option == delete_overlapping_trees_option:
-                self.__data.delete_overlapping_ctrl()
+                self.__data.delete_overlapping()
             elif option == update_tree_by_index_option:
                 try:
                     index = self.readIndex()
-                    self.__data.update_tree_by_index_ctrl(index)
+                    self.__data.update_tree_by_index(index)
                 except ValueError as value_error:
                     print(value_error)
             elif option == update_tree_by_id_option:
                 try:
                     id_update_by_id = self.readId()
-                    self.__data.update_tree_by_id_ctrl(id_update_by_id)
+                    self.__data.update_tree_by_id(id_update_by_id)
                 except ValueError as value_error:
                     print(value_error)
             elif option == visual_representation_option:
-                self.__data.repository_representation_general_ctrl()
+                self.__data.repository_representation_general()
             elif option == get_all_trees_with_coordinates_range_graphic_option:
                 xcoord1 = self.readCoordX()
                 xcoord2 = self.readCoordX()
                 ycoord1 = self.readCoordY()
                 ycoord2 = self.readCoordY()
-                self.__data.coords_range_representation_ctrl(xcoord1, xcoord2, ycoord1, ycoord2)
+                self.__data.coords_range_representation(xcoord1, xcoord2, ycoord1, ycoord2)
             elif option == get_all_trees_between_2_years_graphic_option:
                 year1 = self.readYear()
                 year2 = self.readYear()
-                self.__data.repository_representation_years_range_ctrl(year1, year2)
+                self.__data.repository_representation_years_range(year1, year2)
             elif option == get_bar_char_with_all_types_option:
-                self.__data.types_bar_ctrl()
+                self.__data.types_bar()
             elif option == get_bar_chart_number_trees_planted_in_intervals_of_20_years_option:
-                self.__data.intervals_bar_chart_ctrl()
+                self.__data.intervals_bar_chart()
             elif option == stop_option:
                 stop = True
             else:
